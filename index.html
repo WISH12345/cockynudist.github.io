@@ -103,15 +103,6 @@
             color: #fff;
             font-size: 0.8em;
         }
-        .countdown {
-            font-size: 1.2em;
-            margin-top: 10px;
-            color: #00f; /* Light blue color for countdown text */
-            text-shadow: 0 0 5px rgba(0, 0, 255, 0.7); /* Light blue glow effect */
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
 
     </style>
 </head>
@@ -138,9 +129,6 @@
         </div>
     </div>
 </div>
-
-<!-- Countdown -->
-<div class="countdown" id="countdown"></div>
 
 <!-- Note -->
 <div class="note">
@@ -190,8 +178,8 @@
             if (data.status && data.status.state === "Hospital") {
                 const hospitalEnd = new Date(data.status.until * 1000);
                 const now = new Date();
-                const timeLeft = Math.ceil((hospitalEnd - now) / 1000 / 60);
-                statusElement.innerHTML = `CockyNudist is in hospital. Time left: ${timeLeft} minutes.`;
+                const timeLeft = (hospitalEnd - now) / 1000;
+                statusElement.innerHTML = `CockyNudist is in hospital. Time left: ${Math.floor(timeLeft / 60)} minutes ${Math.floor(timeLeft % 60)} seconds.`;
             } else if (data.status && data.status.description === "Okay") {
                 statusElement.innerHTML = "CockyNudist is able to be attacked.";
             } else {
@@ -204,18 +192,18 @@
     }
 
     function startCountdown() {
-        let countdownElement = document.getElementById('countdown');
+        const apiKeyElement = document.getElementById('apiKey');
         let seconds = 30;
 
-        countdownElement.innerHTML = `Next refresh in ${seconds} seconds`;
+        apiKeyElement.placeholder = `Next refresh in ${seconds} seconds`;
 
         countdownInterval = setInterval(() => {
             seconds--;
             if (seconds <= 0) {
                 clearInterval(countdownInterval);
-                countdownElement.innerHTML = "Refreshing...";
+                apiKeyElement.placeholder = "Refreshing...";
             } else {
-                countdownElement.innerHTML = `Next refresh in ${seconds} seconds`;
+                apiKeyElement.placeholder = `Next refresh in ${seconds} seconds`;
             }
         }, 1000);
     }
