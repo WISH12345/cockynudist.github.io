@@ -24,10 +24,10 @@
             background: #111; /* Darker background for container */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Reduced glow effect */
-            width: 340px; /* Increased width for better centering */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Increased glow effect */
+            width: 380px; /* Increased width for better centering */
             text-align: center;
-            margin-top: -50px; /* Adjusted margin to move main section upwards */
+            margin-top: -30px; /* Adjusted margin to move main section upwards */
         }
 
         input {
@@ -43,7 +43,7 @@
         }
 
         button {
-            padding: 3px;
+            padding: 6px; /* Adjusted padding for button */
             margin: 10px 0;
             width: 100%;
             box-sizing: border-box;
@@ -53,7 +53,7 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* Adjusted glow effect */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Brighter glow effect */
         }
 
         button:hover {
@@ -73,7 +73,7 @@
             background-color: #000; /* Match background color */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Adjusted glow effect */
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.8); /* Adjusted glow effect */
             width: 100%;
             text-align: center;
             margin-bottom: 20px; /* Adjusted margin for better spacing */
@@ -90,6 +90,12 @@
             cursor: default;
             color: #eee; /* Light text color */
             text-decoration: none;
+        }
+
+        .countdown {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #ddd; /* Lightened countdown text color */
         }
     </style>
 </head>
@@ -110,6 +116,7 @@
             <input type="text" id="apiKey" placeholder="Enter API Key">
             <button onclick="startChecking()">Start Checking</button>
             <div class="status" id="status"></div>
+            <div class="countdown" id="countdown"></div>
             <div class="profile-link">
                 <a href="https://www.torn.com/profiles.php?XID=2209950" target="_blank">View CockyNudist's Profile</a>
             </div>
@@ -138,7 +145,11 @@
             clearInterval(intervalId);
         }
         checkStatus(apiKey);
-        intervalId = setInterval(() => checkStatus(apiKey), 30000);
+        intervalId = setInterval(() => {
+            checkStatus(apiKey);
+            startCountdown();
+        }, 30000);
+        startCountdown();
     }
 
     async function checkStatus(apiKey) {
@@ -163,6 +174,22 @@
             console.error("Error fetching data:", error);
             document.getElementById('status').innerHTML = "Error fetching data.";
         }
+    }
+
+    function startCountdown() {
+        let countdownElement = document.getElementById('countdown');
+        countdownElement.innerHTML = "Next refresh in 30 seconds";
+
+        let seconds = 30;
+        intervalId = setInterval(() => {
+            seconds--;
+            if (seconds === 0) {
+                clearInterval(intervalId);
+                countdownElement.innerHTML = "Refreshing...";
+            } else {
+                countdownElement.innerHTML = `Next refresh in ${seconds} seconds`;
+            }
+        }, 1000);
     }
 </script>
 
