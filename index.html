@@ -196,9 +196,9 @@
                 const hospitalEnd = new Date(data.status.until * 1000);
                 updateHospitalCountdown(hospitalEnd);
             } else if (data.status && data.status.description === "Okay") {
-                statusElement.innerHTML = "CockyNudist is able to be attacked.";
+                statusElement.innerHTML = "CockyNudist is ready to be attacked.";
             } else {
-                statusElement.innerHTML = `CockyNudist is not attackable. Current status: ${data.status.description}`;
+                statusElement.innerHTML = `Current status: ${data.status.description}`;
             }
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -220,7 +220,7 @@
             } else {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
-                statusElement.innerHTML = `CockyNudist is in hospital. Time left: ${minutes} minutes ${seconds} seconds.`;
+                statusElement.innerHTML = `CockyNudist is in hospital.<br>Time left: ${minutes} minutes ${seconds} seconds.`;
             }
         }, 1000);
     }
@@ -229,7 +229,7 @@
         let countdownElement = document.getElementById('apiKey');
         let seconds = 30;
 
-        countdownElement.placeholder = `Refreshing in ${seconds} seconds`;
+        countdownElement.placeholder = `Next refresh in ${seconds} seconds`;
 
         countdownInterval = setInterval(() => {
             seconds--;
