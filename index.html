@@ -153,6 +153,7 @@
             alert("Please enter an API key.");
             return;
         }
+        document.getElementById('apiKey').value = ''; // Clear the API key input field
         if (intervalId) {
             clearInterval(intervalId);
         }
