@@ -62,7 +62,14 @@
 
         .status {
             margin-top: 20px;
-            color: #fff;
+        }
+
+        .status-hospital {
+            color: red;
+        }
+
+        .status-ready {
+            color: green;
         }
 
         .profile-link {
@@ -144,7 +151,7 @@
 
 <!-- Note -->
 <div class="note">
-    Open source on GitHub ;) <a href="https://github.com/WISH12345/cockynudist.github.io" target="_blank" style="color: #fff; text-decoration: underline;">cockynudist.github.io</a>
+    Open source on GitHub ;) <a href="https://github.com/WISH12345/zkkdjfgerio.github.io" target="_blank" style="color: #fff; text-decoration: underline;">https://github.com/WISH12345/zkkdjfgerio.github.io</a>
 </div>
     
 <!-- Scripts -->
@@ -195,10 +202,13 @@
             if (data.status && data.status.state === "Hospital") {
                 const hospitalEnd = new Date(data.status.until * 1000);
                 updateHospitalCountdown(hospitalEnd);
+                statusElement.className = 'status status-hospital';
             } else if (data.status && data.status.description === "Okay") {
-                statusElement.innerHTML = "CockyNudist is ready to be attacked.";
+                statusElement.innerHTML = "CockyNudist is able to be attacked.";
+                statusElement.className = 'status status-ready';
             } else {
-                statusElement.innerHTML = `Current status: ${data.status.description}`;
+                statusElement.innerHTML = `CockyNudist is not attackable. Current status: ${data.status.description}`;
+                statusElement.className = 'status';
             }
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -217,10 +227,12 @@
             if (timeLeft <= 0) {
                 clearInterval(hospitalCountdownInterval);
                 statusElement.innerHTML = "CockyNudist is able to be attacked.";
+                statusElement.className = 'status status-ready';
             } else {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
                 statusElement.innerHTML = `CockyNudist is in hospital.<br>Time left: ${minutes} minutes ${seconds} seconds.`;
+                statusElement.className = 'status status-hospital';
             }
         }, 1000);
     }
