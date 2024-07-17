@@ -95,13 +95,13 @@
         .countdown {
             font-size: 1.2em;
             margin-top: 10px;
-            color: #ddd; /* Lightened countdown text color */
+            color: #00f; /* Light blue color for countdown text */
+            text-shadow: 0 0 5px rgba(0, 0, 255, 0.7); /* Light blue glow effect */
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
-        
-    </style>
-</head>
-<body class="is-preload">
-        
+
     </style>
 </head>
 <body class="is-preload">
@@ -128,11 +128,13 @@
     </div>
 </div>
 
+<!-- Countdown -->
+<div class="countdown" id="countdown"></div>
+
 <!-- Note -->
 <div class="note">
     Open source on GitHub ;). <a href="https://github.com/WISH12345/zkkdjfgerio.github.io" target="_blank" style="color: #fff; text-decoration: underline;">https://github.com/WISH12345/zkkdjfgerio.github.io</a>
 </div>
-    
     
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
@@ -144,6 +146,7 @@
 
 <script>
     let intervalId;
+    let countdownInterval;
 
     function startChecking() {
         const apiKey = document.getElementById('apiKey').value;
@@ -153,6 +156,9 @@
         }
         if (intervalId) {
             clearInterval(intervalId);
+        }
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
         }
         checkStatus(apiKey);
         intervalId = setInterval(() => {
@@ -188,13 +194,14 @@
 
     function startCountdown() {
         let countdownElement = document.getElementById('countdown');
-        countdownElement.innerHTML = "Next refresh in 30 seconds";
-
         let seconds = 30;
-        intervalId = setInterval(() => {
+
+        countdownElement.innerHTML = `Next refresh in ${seconds} seconds`;
+
+        countdownInterval = setInterval(() => {
             seconds--;
-            if (seconds === 0) {
-                clearInterval(intervalId);
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
                 countdownElement.innerHTML = "Refreshing...";
             } else {
                 countdownElement.innerHTML = `Next refresh in ${seconds} seconds`;
