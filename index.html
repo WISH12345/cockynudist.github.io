@@ -16,30 +16,30 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #111; /* Dark space grey background */
+            background-color: #000; /* Dark background color */
             color: #eee; /* Light text color */
         }
 
         .container {
-            background: #222; /* Darker background for container */
+            background: #111; /* Darker background for container */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.186);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Increased glow effect */
             width: 300px;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px; /* Adjusted margin for better centering */
         }
 
         input {
-            padding: 8px; /* Adjusted padding for input */
-            margin: 12px 0; /* Increased margin for input */
+            padding: 8px;
+            margin: 12px 0;
             width: 100%;
             box-sizing: border-box;
-            font-weight: bold; /* Make input text bold */
-            color: #333; /* Darken the input text color */
-            border: 1px solid #ccc; /* Add a light border */
-            border-radius: 4px; /* Round the corners */
-            background-color: #fff; /* White background for input */
+            font-weight: bold;
+            color: #ddd; /* Lightened input text color */
+            border: 1px solid #777; /* Darker border color */
+            border-radius: 4px;
+            background-color: #333; /* Darkened input background color */
         }
 
         button {
@@ -53,6 +53,7 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Increased glow effect */
         }
 
         button:hover {
@@ -61,7 +62,7 @@
 
         .status {
             margin-top: 20px;
-            color: #fff; /* White text color for status */
+            color: #fff;
         }
 
         .profile-link {
@@ -69,8 +70,8 @@
         }
 
         header#header a {
-            pointer-events: none; /* Disable click events */
-            cursor: default; /* Default cursor */
+            pointer-events: none;
+            cursor: default;
         }
     </style>
 </head>
@@ -87,7 +88,7 @@
     <!-- Main -->
     <div id="main">
         <div class="container">
-            <h2>Check CockyNudist Status </h2>
+            <h2 style="color: #eee;">Check CockyNudist Status </h2>
             <input type="text" id="apiKey" placeholder="Enter API Key">
             <button onclick="startChecking()">Start Checking</button>
             <div class="status" id="status"></div>
