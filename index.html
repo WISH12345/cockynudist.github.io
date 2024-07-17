@@ -30,7 +30,21 @@
             width: 100%;
             box-sizing: border-box;
         }
+        button {
+            border: none;
+            border-radius: 20px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
         .status {
+            margin-top: 20px;
+        }
+        .profile-link {
             margin-top: 20px;
         }
     </style>
@@ -41,6 +55,9 @@
         <input type="text" id="apiKey" placeholder="Enter API Key">
         <button onclick="startChecking()">Start Checking</button>
         <div class="status" id="status"></div>
+        <div class="profile-link">
+            <a href="https://www.torn.com/profiles.php?XID=2209950" target="_blank">View CockyNudist's Profile</a>
+        </div>
     </div>
     <script>
         let intervalId;
