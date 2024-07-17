@@ -16,11 +16,12 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #0000007e;
+            background-color: #111; /* Dark space grey background */
+            color: #eee; /* Light text color */
         }
 
         .container {
-            background: #0000008c;
+            background: #222; /* Darker background for container */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.186);
@@ -38,10 +39,11 @@
             color: #333; /* Darken the input text color */
             border: 1px solid #ccc; /* Add a light border */
             border-radius: 4px; /* Round the corners */
+            background-color: #fff; /* White background for input */
         }
 
         button {
-            padding: 3px;
+            padding: 10px;
             margin: 10px 0;
             width: 100%;
             box-sizing: border-box;
@@ -59,10 +61,16 @@
 
         .status {
             margin-top: 20px;
+            color: #fff; /* White text color for status */
         }
 
         .profile-link {
             margin-top: 20px;
+        }
+
+        header#header a {
+            pointer-events: none; /* Disable click events */
+            cursor: default; /* Default cursor */
         }
     </style>
 </head>
@@ -73,7 +81,7 @@
 
     <!-- Header -->
     <header id="header">
-        <h1><a href="index.html"><strong>Cockynudist status checker</strong> -  by xacaw <3</a></h1>
+        <h1><strong>Cockynudist status checker</strong> -  by xacaw <3</h1>
     </header>
 
     <!-- Main -->
