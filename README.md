@@ -1,2 +1,3 @@
-# zkkdjfgerio.github.io
-asdfasd
+# Hello :D
+
+I made this thingy ok now enjoy.
