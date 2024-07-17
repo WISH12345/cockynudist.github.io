@@ -138,7 +138,11 @@
             clearInterval(intervalId);
         }
         checkStatus(apiKey);
-        intervalId = setInterval(() => checkStatus(apiKey), 30000);
+        intervalId = setInterval(() => {
+            checkStatus(apiKey);
+            startCountdown();
+        }, 30000);
+        startCountdown();
     }
 
     async function checkStatus(apiKey) {
@@ -163,6 +167,22 @@
             console.error("Error fetching data:", error);
             document.getElementById('status').innerHTML = "Error fetching data.";
         }
+    }
+
+    function startCountdown() {
+        let countdownElement = document.getElementById('countdown');
+        countdownElement.innerHTML = "Next refresh in 30 seconds";
+
+        let seconds = 30;
+        intervalId = setInterval(() => {
+            seconds--;
+            if (seconds === 0) {
+                clearInterval(intervalId);
+                countdownElement.innerHTML = "Refreshing...";
+            } else {
+                countdownElement.innerHTML = `Next refresh in ${seconds} seconds`;
+            }
+        }, 1000);
     }
 </script>
 
