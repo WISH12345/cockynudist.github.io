@@ -18,17 +18,16 @@
             min-height: 100vh; /* Ensure full viewport height */
             background-color: #000; /* Dark background color */
             color: #eee; /* Light text color */
-            position: relative; /* Relative positioning for absolute elements */
         }
 
         .container {
             background: #111; /* Darker background for container */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Increased glow effect */
-            width: 380px; /* Increased width for better centering */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Reduced glow effect */
+            width: 340px; /* Increased width for better centering */
             text-align: center;
-            margin-top: -30px; /* Adjusted margin to move main section upwards */
+            margin-top: -50px; /* Adjusted margin to move main section upwards */
         }
 
         input {
@@ -44,7 +43,7 @@
         }
 
         button {
-            padding: 6px; /* Adjusted padding for button */
+            padding: 3px;
             margin: 10px 0;
             width: 100%;
             box-sizing: border-box;
@@ -54,7 +53,7 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Brighter glow effect */
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* Adjusted glow effect */
         }
 
         button:hover {
@@ -74,11 +73,10 @@
             background-color: #000; /* Match background color */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.8); /* Adjusted glow effect */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Adjusted glow effect */
             width: 100%;
             text-align: center;
             margin-bottom: 20px; /* Adjusted margin for better spacing */
-            position: relative; /* Relative positioning for absolute elements */
         }
 
         header#header h1 {
@@ -92,24 +90,6 @@
             cursor: default;
             color: #eee; /* Light text color */
             text-decoration: none;
-        }
-
-        .countdown {
-            font-size: 1.2em;
-            margin-top: 10px;
-            color: #ddd; /* Lightened countdown text color */
-        }
-
-        .note {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: rgba(0, 123, 255, 0.8); /* Light blue background with opacity */
-            padding: 5px;
-            border-radius: 4px;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Slight glow effect */
-            color: #fff;
-            font-size: 0.8em;
         }
     </style>
 </head>
@@ -130,17 +110,11 @@
             <input type="text" id="apiKey" placeholder="Enter API Key">
             <button onclick="startChecking()">Start Checking</button>
             <div class="status" id="status"></div>
-            <div class="countdown" id="countdown"></div>
             <div class="profile-link">
                 <a href="https://www.torn.com/profiles.php?XID=2209950" target="_blank">View CockyNudist's Profile</a>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Note -->
-<div class="note">
-    100% open source on GitHub. <a href="https://github.com/WISH12345/zkkdjfgerio.github.io" target="_blank" style="color: #fff; text-decoration: underline;">https://github.com/WISH12345/zkkdjfgerio.github.io</a>
 </div>
 
 <!-- Scripts -->
@@ -164,11 +138,7 @@
             clearInterval(intervalId);
         }
         checkStatus(apiKey);
-        intervalId = setInterval(() => {
-            checkStatus(apiKey);
-            startCountdown();
-        }, 30000);
-        startCountdown();
+        intervalId = setInterval(() => checkStatus(apiKey), 30000);
     }
 
     async function checkStatus(apiKey) {
@@ -193,22 +163,6 @@
             console.error("Error fetching data:", error);
             document.getElementById('status').innerHTML = "Error fetching data.";
         }
-    }
-
-    function startCountdown() {
-        let countdownElement = document.getElementById('countdown');
-        countdownElement.innerHTML = "Next refresh in 30 seconds";
-
-        let seconds = 30;
-        intervalId = setInterval(() => {
-            seconds--;
-            if (seconds === 0) {
-                clearInterval(intervalId);
-                countdownElement.innerHTML = "Refreshing...";
-            } else {
-                countdownElement.innerHTML = `Next refresh in ${seconds} seconds`;
-            }
-        }, 1000);
     }
 </script>
 
